@@ -39,6 +39,20 @@ module.exports = {
         exclude: /node_modules/,
         use: "babel-loader",
       },
+
+      {
+        //para conseguir utilizar svg (ou outras imagens), iremos precisar configurar o webpack. com o file-loader
+        //yarn add file-loader -D
+        test: /\.(png|jp(e*)g|svg|gif)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "images/[hash]-[name].[ext]",
+            },
+          },
+        ],
+      },
     ],
   },
 };

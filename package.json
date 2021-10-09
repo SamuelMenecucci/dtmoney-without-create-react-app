@@ -8,8 +8,11 @@
     "build": "cross-env NODE_ENV=production webpack"
   },
   "dependencies": {
+    "axios": "^0.22.0",
+    "miragejs": "^0.1.42",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-modal": "^3.14.3",
     "styled-components": "^5.3.1"
   },
   "devDependencies": {
@@ -19,6 +22,7 @@
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.15.0",
     "@types/react-dom": "^17.0.9",
+    "@types/react-modal": "^3.12.1",
     "@types/styled-components": "^5.1.15",
     "babel-loader": "^8.2.2",
     "cross-env": "^7.0.3",

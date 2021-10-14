@@ -4,11 +4,9 @@ import { GlobalStyle } from "./styles/global";
 
 import { useState } from "react";
 import Modal from "react-modal";
+import { NewTransactionModal } from "./components/NewTransactionModal";
 
 Modal.setAppElement("#root");
-type HeaderProps = {
-  onOpenTransactionModal: () => void;
-};
 
 export function App() {
   const [transactionModalIsOpen, setTransactionModalisOpen] = useState(false);
@@ -25,12 +23,12 @@ export function App() {
     <>
       <Header onOpenTransactionModal={handleOpenTransactionModal} />
       <Dashboard />
-      <Modal
+
+      <NewTransactionModal
         isOpen={transactionModalIsOpen}
         onRequestClose={handleCloseTransactionModal}
-      >
-        <h1>Information Here</h1>
-      </Modal>
+      />
+
       <GlobalStyle />
     </>
   );

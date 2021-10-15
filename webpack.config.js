@@ -4,6 +4,8 @@ const isDevelopment = process.env.NODE_ENV !== "production";
 
 const HtmlWebpackPlugins = require("html-webpack-plugin");
 
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+
 module.exports = {
   //yarn add cross-env -D com as configurações no package.json
   mode: isDevelopment ? "development" : "production",
@@ -24,20 +26,30 @@ module.exports = {
   // yarn add webpack-dev-server -D
   devServer: {
     static: path.resolve(__dirname, "public"),
+    hot: true,
   },
 
   plugins: [
+    isDevelopment && new ReactRefreshWebpackPlugin(),
+
     new HtmlWebpackPlugins({
       template: path.resolve(__dirname, "public", "index.html"),
     }),
-  ],
+  ].filter(Boolean),
 
   module: {
     rules: [
       {
         test: /\.(j|t)sx$/,
         exclude: /node_modules/,
-        use: "babel-loader",
+        use: {
+          loader: "babel-loader",
+          options: {
+            plugins: [
+              isDevelopment && require.resolve("react-refresh/babel"),
+            ].filter(Boolean),
+          },
+        },
       },
 
       {
